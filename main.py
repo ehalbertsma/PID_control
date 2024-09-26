@@ -11,10 +11,10 @@ fan = plant.Fan(0)
 
 step_size = 0.0001 # sec
 h_ref = 10
-Kp, Ki, Kd = 0, 0, 0
+Kp, Ki, Kd = -50, 0, -30
 pid = pid.PID(Kp, Ki, Kd, step_size)
 
-t_arr = np.arange(0,50,step_size)
+t_arr = np.arange(0,60,step_size)
 h_arr1 = []
 h_arr2 = []
 control_arr = []

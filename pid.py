@@ -9,7 +9,7 @@ class PID:
 
         # integral of the error
         self.I_e = 0
-        self.prev_e = 0
+        self.prev_e = None
 
     def error(self, x_ref, x_current):
         return x_ref - x_current
@@ -19,7 +19,7 @@ class PID:
         return self.I_e
     
     def derivative_e(self, error):
-        prev_e = self.prev_e
+        prev_e = self.prev_e if self.prev_e else error
         self.prev = error
         return (prev_e - error)/self.step_size
 
@@ -29,6 +29,6 @@ class PID:
         I_e = self.integral_e(e)
         derivative_e = self.derivative_e(e)
 
-        offset = 10000
+        offset = 3000
 
         return (self.Kp*e + self.Ki*I_e + self.Kd*derivative_e + offset)
